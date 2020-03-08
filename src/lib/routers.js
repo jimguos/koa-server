@@ -25,5 +25,25 @@ module.exports = {
     method: async ctx => {
       ctx.body = '获取日志成功'
     }
+  },
+  postLog: {
+    path: '/postLog',
+    type: 'post',
+    method: async ctx => {
+      const req = ctx.request
+      const url = req.url // 请求的url
+      const method = req.method // 请求的方法
+      let post_data = ''
+      ctx.req.addListener('data', postDataChunk => {
+        console.log('收到post数据 ---->', postDataChunk)
+        post_data += postDataChunk
+      })
+      ctx.req.addListener('end', () => {
+        console.log('接收post数据完毕 ---->', post_data)
+        let postData = JSON.parse(post_data)
+        postData.time = new Date().getTime(postData.time)
+        log.save(postData)
+      })
+    }
   }
 }
