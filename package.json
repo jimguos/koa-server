@@ -22,7 +22,12 @@
   },
   "author": "wuzhixiang<wuzhixiang@huohua.cn>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.9.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
