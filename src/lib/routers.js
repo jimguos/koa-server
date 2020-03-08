@@ -1,3 +1,6 @@
+const { log } = require('./db')
+const { queryToObj } = require('../utils/util')
+
 module.exports = {
   main: {
     path: '/',
@@ -8,9 +11,12 @@ module.exports = {
   },
   uploadLog: {
     path: '/uploadLog',
-    type: 'post',
+    type: 'get',
     method: async ctx => {
-      ctx.body = '上传日志成功'
+      const { querystring } = ctx
+      const preams = queryToObj(querystring)
+      ctx.body = '操作成功'
+      log.save(preams)
     }
   },
   getLog: {
